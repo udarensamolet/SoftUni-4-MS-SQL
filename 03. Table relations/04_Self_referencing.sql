@@ -1,4 +1,4 @@
---- Problem 04: Self-Referencing ---
+--- Problem 04: Self-Referencing 
 CREATE TABLE Teachers (
 	TeacherID INT PRIMARY KEY
 	, [Name] NVARCHAR(30) NOT NULL

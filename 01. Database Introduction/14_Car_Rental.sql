@@ -1,4 +1,4 @@
---- Problem 14: Car Rental Database ---
+--- Problem 14: Car Rental Database 
 
 CREATE DATABASE [CarRental]
 
@@ -96,9 +96,3 @@ INSERT INTO [RentalOrders] ([EmployeeId], [CustomerId], [CarId], [TankLevel], [K
 	(1, 1, 1, 40, 123456, 123654, 198, '2021-10-01', '2021-10-03', 3, 19.99, 59.97, 'Paid', NULL),
 	(2, 2, 2, 45, 123123, 123321, 198, '2021-10-03', '2021-10-09', 7, 169.99, 169.99, 'Pending', NULL),
 	(3, 3, 3, 10, 123789, 123987, 198, '2021-10-09', '2021-10-09', 1, 17.99, 17.99, 'Paid', NULL)
- 
-
-
-
-
-

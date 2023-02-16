@@ -1,4 +1,4 @@
---- Problem 13:	Movies Database ---
+--- Problem 13:	Movies Database 
 CREATE DATABASE [Movies]
 USE [Movies]
 
@@ -62,10 +62,3 @@ INSERT INTO [Movies] ([Id], [Title], [DirectorId], [CopyrightYear], [Length], [G
 	(3, 'Kill Bill', 2, '2013-01-01', 1233, 211, 310, 10, null),
 	(4, 'Blah Blah', 4, '2013-01-01', 1233, 213, 312, 10, null),
 	(5, 'Blah Blah 2', 5, '2013-01-01', 1233, 210, 311, 10, null)
-
-
-
-
-
-
-

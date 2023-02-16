@@ -1,4 +1,4 @@
---- Problem 07: Create Table People ---
+--- Problem 07: Create Table People
 CREATE DATABASE [People]
 
 USE [People]
@@ -22,5 +22,3 @@ INSERT INTO [People] ([Name], [Picture], [Height], [Weight], [Gender], [Birthdat
 	('Sharkie', 101010101, 1.71, 76.89, 'f', '1989/09/27', 'blah blah blah'),
 	('Timon', 101010101, 1.73, 79.89, 'f', '1989/09/27', 'blah blah blah'),
 	('Rosko', 101010101, 1.89, 77.00, 'm', '1989/09/27', 'blah blah blah')
-
-

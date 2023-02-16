@@ -1,4 +1,4 @@
---- Problem 15: Hotel Database --- 
+--- Problem 15: Hotel Database 
 CREATE DATABASE [Hotel]
 
 USE [Hotel]
@@ -132,12 +132,12 @@ USE [Hotel]
 
 
 
---- Problem 23:	Decrease Tax Rate ---
+--- Problem 23:	Decrease Tax Rate 
 UPDATE [Payments]
 SET [TaxRate] = [TaxRate] / 1.03
 SELECT [TaxRate] from [Payments]
 
 
 
---- Problem 24: Delete All Records ---
+--- Problem 24: Delete All Records
 TRUNCATE TABLE [Occupancies]

@@ -1,4 +1,4 @@
---- Problem 16: Create SoftUni Database ---
+--- Problem 16: Create SoftUni Database
 CREATE DATABASE [SoftUni]
 
 USE [SoftUni]
@@ -40,7 +40,7 @@ CREATE TABLE [Employees] (
 
 
 
---- Problem 17:	Backup Database ---
+--- Problem 17:	Backup Database 
 BACKUP DATABASE [SoftUni]
 TO DISK = 'c:\back-ups\SoftUni.bak'
    WITH FORMAT,
@@ -53,7 +53,7 @@ drop database [SoftUni]
 
 
 
---- Problem 18:	Basic Insert ---
+--- Problem 18:	Basic Insert 
 USE [SoftUni]
 
 INSERT INTO [Towns]([Name]) VALUES
@@ -81,14 +81,14 @@ INSERT INTO [Employees]([FirstName], [MiddleName], [LastName], [JobTitle], [Depa
 
 
 
---- Problem 19:	Basic Select All Fields ---
+--- Problem 19:	Basic Select All Fields 
 SELECT * FROM [Towns]
 SELECT * FROM [Departments]
 SELECT * FROM [Employees]
 
 
 
---- Problem 20:	Basic Select All Fields and Order Them ---
+--- Problem 20:	Basic Select All Fields and Order Them 
 SELECT * FROM [Towns]
 ORDER BY [Name] 
 SELECT *FROM [Departments]
@@ -98,7 +98,7 @@ ORDER BY [Salary] DESC
 
 
 
---- Problem 21:	Basic Select Some Fields ---
+--- Problem 21:	Basic Select Some Fields 
 SELECT [Name] FROM [Towns]
 ORDER BY [Name] 
 SELECT [Name] FROM [Departments]
@@ -108,10 +108,7 @@ ORDER BY [Salary] DESC
 
 
 
---- Problem 22:	Increase Employees Salary ---
+--- Problem 22:	Increase Employees Salary 
 UPDATE [Employees]
 SET [Salary] = [Salary] * 1.10
 SELECT [Salary] FROM [Employees]
-
-
-

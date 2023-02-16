@@ -1,11 +1,11 @@
---- Problem 01 Create Database ---
+--- Problem 01: Create Database
 CREATE DATABASE [Minions]
 
 USE [Minions]
 
 
 
---- Problem 02 Create Tables ---
+--- Problem 02: Create Tables
 CREATE TABLE [Minions] (
 	[Id] INT NOT NULL,
 	[Name] NVARCHAR(50) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE [Towns](
 
 
 
---- Problem 03 Alter Minions Table ---
+--- Problem 03: Alter Minions Table
 ALTER TABLE [Minions]
 ADD [TownId] INT 
 
@@ -31,7 +31,7 @@ ADD CONSTRAINT FK_MinionsTownId FOREIGN KEY (TownId)  REFERENCES [Towns]([Id])
 
 
 
---- Problem 04 Insert Recordds in Both Tables ---
+--- Problem 04: Insert Recordds in Both Tables
 INSERT INTO [Towns]([Id], [Name]) VALUES
 	(1, 'Sofia'),
 	(2, 'Plovdiv'),
@@ -44,12 +44,12 @@ INSERT INTO [Minions]([Id], [Name], [Age], [TownId]) VALUES
 
 	
 
---- Problem 05 Truncate Table Minions ---
+--- Problem 05 Truncate Table Minions 
 TRUNCATE TABLE [Minions]
 
 
 
---- Problem 06 Drop All Tables ---
+--- Problem 06 Drop All Tables 
 DROP TABLE [Minions]
 
 DROP TABLE [Towns]

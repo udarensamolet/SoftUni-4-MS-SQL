@@ -1,4 +1,4 @@
---- Problem 08: Create Table Users --- 
+--- Problem 08: Create Table Users
 CREATE DATABASE [Users]
 
 USE [Users]
@@ -25,7 +25,7 @@ INSERT INTO [Users] ([Username], [Password], [ProfilePicture], [LastLoginTime], 
 
 
 
---- Problem 09: Change Primary Key --- 
+--- Problem 09: Change Primary Key
 ALTER TABLE [Users]
 DROP CONSTRAINT PK_UsersId
 
@@ -35,7 +35,7 @@ ADD CONSTRAINT PK_UsersIdUsername PRIMARY KEY ([Id], [Username])
 
 
 
---- Problem 10:	Add Check Constraint --- 
+--- Problem 10:	Add Check Constraint
 ALTER TABLE [Users]
 ADD CONSTRAINT [Password] CHECK (Len([Password]) >= 5)
 

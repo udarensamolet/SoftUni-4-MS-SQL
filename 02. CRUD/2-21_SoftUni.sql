@@ -1,55 +1,55 @@
---- Problem 02: Find All Information About Departments ---
+--- Problem 02: Find All Information About Departments 
 SELECT *
 FROM Departments
 
 
 
---- Problem 03: Find all Department Names ---
+--- Problem 03: Find all Department Names 
 SELECT [Name]
 FROM Departments
 
 
 
---- Problem 04:	Find Salary of Each Employee ---
+--- Problem 04:	Find Salary of Each Employee 
 SELECT FirstName, LastName, Salary
 FROM Departments
 
 
 
---- Problem 05: Find Full Name of Each Employee ---
+--- Problem 05: Find Full Name of Each Employee 
 SELECT FirstName, MiddleName, LastName
 FROM Employees
 
 
 
---- Problem 06: Find Email Address of Each Employee ---
+--- Problem 06: Find Email Address of Each Employee 
 SELECT CONCAT(FirstName, '.', LastName, '@softuni.bg')
 AS [Full Email Address]
 FROM Employees
 
 
 
---- Problem 07: Find Find All Different Employee’s Salaries ---
+--- Problem 07: Find Find All Different Employee’s Salaries 
 SELECT DISTINCT Salary 
 FROM Employees
 
 
 
---- Problem 08: Find all Information About Employees --- 
+--- Problem 08: Find all Information About Employees 
 SELECT * 
 FROM Employees
 WHERE JobTitle='Sales Representative'
 
 
 
---- Problem 09: Find Names of All Employees by Salary in Range ---
+--- Problem 09: Find Names of All Employees by Salary in Range 
 SELECT FirstName, LastName, JobTitle
 FROM Employees
 WHERE Salary BETWEEN 20000 AND 30000 
 
 
 
---- Problem 10: Find Names of All Employees ---
+--- Problem 10: Find Names of All Employees 
 SELECT CONCAT(FirstName, ' ', MiddleName, ' ', LastName)
 AS [Full Name]
 FROM Employees
@@ -57,14 +57,14 @@ WHERE Salary=25000 OR Salary=14000 OR Salary=12500 OR Salary=23600
 
 
 
---- Problem 11: Find All Employees Without Manager ---
+--- Problem 11: Find All Employees Without Manager 
 SELECT FirstName, LastName
 FROM Employees
 WHERE ManagerID IS NULL
 
 
 
---- Problem 12: Find All Employees with Salary More Than 50000 ---
+--- Problem 12: Find All Employees with Salary More Than 50000 
 SELECT FirstName, LastName, Salary
 FROM Employees
 WHERE Salary>50000

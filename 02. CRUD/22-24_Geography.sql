@@ -2,7 +2,7 @@ USE [Geography]
 
 
 
---- Problem 22: All Mountain Peaks ---
+--- Problem 22: All Mountain Peaks
 SELECT PeakName
 FROM Peaks
 ORDER BY PeakName
@@ -19,7 +19,7 @@ ORDER BY [Population] DESC
 
 
 
---- Problem 24: *Countries and Currency (Euro / Not Euro) ---
+--- Problem 24: *Countries and Currency (Euro / Not Euro) 
 SELECT CountryName
 	, CountryCode
 	, CASE
