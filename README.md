@@ -58,6 +58,7 @@ May the Force be with you!
 3.09. Peaks in Rila<br>
 
 ## 4 Built-in Functions
+### Exercises
 4.01. Find Names of All Employees by First Name<br>
 4.02. Find Names of All Employees by Last Name<br>
 4.03. Find First Names of All Employees<br>
