@@ -6,6 +6,7 @@ Any feedback would be appreciated and feel free to borrow some code if you can't
 May the Force be with you!
 
 ## 1 Database Introduction
+### Exercises
 1.04. Insert Records in Both Tables<br>
 1.07. Create Table People<br>
 1.08. Create Table Users<br>
@@ -20,6 +21,7 @@ May the Force be with you!
 1.24. Delete All Records<br>
 
 ## 2 CRUD
+### Exercises
 2.02. Find All Information About Departments<br>
 2.03. Find all Department Names<br>
 2.04. Find Salary of Each Employee<br>
@@ -46,6 +48,7 @@ May the Force be with you!
 2.25. All Diablo Characters<br>
 
 ## 3 Table Relations
+### Exercises
 3.01. One-To-One Relationship<br>
 3.02. One-To-Many Relationship<br>
 3.03. Many-To-Many Relationship<br>
@@ -75,6 +78,7 @@ May the Force be with you!
 4.18. Orders Table<br>
 
 ## 5 Subqueries and Joins
+### Exercises
 5.01. Employee Address<br>
 5.02. Addresses with Towns<br>
 5.03. Sales Employees<br>
@@ -95,6 +99,7 @@ May the Force be with you!
 5.18. Highest Peak Name and Elevation by Country<br>
 
 ## 6 Indices and Data Aggregation
+### Exercises
 6.01. Records' Count<br>
 6.02. Longest Magic Wand<br>
 6.03. Longest Magic Wand per Deposit Groups<br>
@@ -116,6 +121,7 @@ May the Force be with you!
 6.19. Salary Challenge<br>
 
 ## 7 Functions and Stored Procedures
+### Exercises
 7.01. Employees with Salary Above 35000<br>
 7.02. Employees with Salary Above Number<br>
 7.03. Town Names Starting With<br>
@@ -131,6 +137,7 @@ May the Force be with you!
 7.13. Cash in User Games Odd Rows<br>
 
 ## 8 Triggers and Transaction
+### Exercises
 8.01. Create Table Logs<br>
 8.02. Create Table Emails<br>
 8.03. Deposit Money<br>
@@ -141,6 +148,7 @@ May the Force be with you!
 8.09. Delete Employees<br>
 
 ## 9 Additional Exercises
+### Exercises
 9.01. Number of Users for Email Provider<br>
 9.02. All Users in Games<br>
 9.03. Users in Games with Their Items<br>
