@@ -1,59 +1,58 @@
-USE Bank
-GO
-
-
-
 --- Problem 09: Find Full Name
-ALTER PROC usp_GetHoldersFullName 
+CREATE OR ALTER PROCEDURE usp_GetHoldersFullName 
 AS
-	SELECT CONCAT(FirstName, ' ', LastName)
+	SELECT FirstName + ' ' + LastName AS [Full Name]
 	FROM AccountHolders
 GO
+
+EXEC usp_GetHoldersFullName
 
 
 
 --- Problem 10: People with Balance Higher Than
-CREATE PROC usp_GetHoldersWithBalanceHigherThan(@checkAmount DECIMAL)
+CREATE OR ALTER PROC usp_GetHoldersWithBalanceHigherThan(@balance MONEY)
 AS
-	SELECT 
-		ah.FirstName
-		, ah.LastName
-	FROM Accounts AS a
-	JOIN AccountHolders AS ah
-	ON a.Id=ah.Id
-	GROUP BY(a.Id)
-	HAVING SUM(a.Balance) > 100
-EXEC usp_GetHoldersWithBalanceHigherThan 2000
+	SELECT ah.FirstName AS [First Name]
+		   , ah.LastName AS [Last Name]
+	FROM AccountHolders AS ah
+	JOIN Accounts AS a
+	ON ah.Id = a.AccountHolderId
+	GROUP BY a.AccountHolderId, ah.FirstName, ah.LastName 
+	HAVING SUM(a.Balance) > @balance
+	ORDER BY ah.FirstName, ah.LastName
 GO
 
 
 
 --- Problem 11: Future Value Function
-CREATE FUNCTION ufn_CalculateFutureValue (@Sum DECIMAL, @YearlyInterestRate FLOAT, @NumberOfYears INT)
-RETURNS DECIMAL(4,2)
+CREATE OR ALTER FUNCTION ufn_CalculateFutureValue(
+	@sum DECIMAL(18,2)
+	, @interestRate FLOAT
+	, @numberOfYears INT)
+RETURNS DECIMAL(18,4)
 AS
 BEGIN
-	DECLARE @Result DECIMAL(4,2);
-	SET @Result = @Sum * POWER((1 + @YearlyInterestRate), @NumberOfYears)
-	RETURN @Result
+	DECLARE @result DECIMAL (18,4)
+	SET @result = @sum * (POWER((1 + @interestRate), @numberOfYears))
+	RETURN @result
 END
-GO
+
+SELECT dbo.ufn_CalculateFutureValue(1000, 0.1, 5)
 
 
 
 --- Problem 12: Calculating Interest
-CREATE PROC usp_CalculateFutureValueForAccount @accID INT, @rate FLOAT
-AS
-BEGIN
+CREATE OR ALTER PROCEDURE usp_CalculateFutureValueForAccount(@accountId INT, @interestRate FLOAT)
+AS 
 	SELECT ah.Id AS [Account Id]
-	     , ah.FirstName AS [First Name]
-		 , ah.LastName AS [Last Name]
-		 , a.Balance AS [Current Balance]
-		 , dbo.ufn_CalculateFutureValue(a.Balance, @rate, 5) AS [Balance in 5 years]
-	  FROM AccountHolders AS ah
+		   , ah.FirstName AS [First Name]
+		   , ah.LastName AS [Last Name]
+		   , a.Balance AS [CurrentBalance]
+		   , dbo.ufn_CalculateFutureValue(a.Balance, @interestRate, 5) AS [Balance in 5 Years]
+	FROM AccountHolders AS ah
+	JOIN Accounts AS a
+	ON ah.Id = a.AccountHolderId
+	WHERE ah.Id = @accountId
+GO
 
-	  JOIN Accounts AS a
-	    ON ah.Id = a.AccountHolderId
-
-	 WHERE a.Id = @accID
-END
+EXEC usp_CalculateFutureValueForAccount 1, 0.1
