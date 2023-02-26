@@ -144,8 +144,9 @@ May the Force be with you!
 8.03. Deposit Money<br>
 8.04. Withdraw Money Procedure<br>
 8.05. Money Transfer<br>
-8.06. Massive Shopping<br>
-8.07. Employees with Three Projects<br>
+8.06. Trigger<br>
+8.07. Massive Shopping<br>
+8.08. Employees with Three Projects<br>
 8.09. Delete Employees<br>
 
 ## 9 Additional Exercises

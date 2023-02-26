@@ -1,45 +1,36 @@
-USE Bank
-GO
-
-
-
 --- Problem 01: Create Table Logs
-CREATE TABLE Logs (
+CREATE TABLE Logs(
 	LogId INT PRIMARY KEY IDENTITY
 	, AccountId INT FOREIGN KEY REFERENCES Accounts(Id) NOT NULL
-	, OldSum DECIMAL (6, 2) NOT NULL
-	, NewSum DECIMAL (6, 2) NOT NULL
+	, OldSum MONEY NOT NULL
+	, NewSum MONEY NOT NULL
 )
-GO
 
-CREATE TRIGGER tr_UpdateLogsOnAccountUpdate
+CREATE OR ALTER TRIGGER tr_AddToLogsOnAccountUpdate
 ON Accounts FOR UPDATE
 AS
 	INSERT INTO Logs(AccountId, OldSum, NewSum)
-	     SELECT i.Id
-		      , d.Balance
-			  , i.Balance
-		   FROM inserted AS i
-		   JOIN deleted AS d 
-		     ON i.Id = d.Id
-		  WHERE i.Balance <> d.Balance
+	SELECT i.Id, d.Balance, i.Balance
+	FROM inserted AS i
+	JOIN deleted as d
+	ON i.Id = d.Id
+	WHERE i.Balance <> d.Balance
 GO
 
 
 
 --- Problem 02: Create Table Emails
-CREATE TABLE NotificationEmails (
-	Id INT PRIMARY KEY IDENTITY
-	, Recipient INT FOREIGN KEY REFERENCES Accounts(Id) NOT NULL
-	, [Subject] NVARCHAR(100)
-	, Body NVARCHAR(100)
+CREATE TABLE NotificationEmails(
+	Id INT PRIMARY KEY NOT NULL
+	, Recipient INT FOREIGN KEY REFERENCES AccountHolders(Id) NOT NULL
+	, [Subject] NVARCHAR(250) NOT NULL
+	, Body NVARCHAR(250) NOT NULL
 )
-GO
 
-CREATE TRIGGER tr_SendEmailOnAccountAddition
-ON Logs FOR INSERT
+CREATE OR ALTER TRIGGER tr_SendEmailOnLogUpate
+ON Logs FOR UPDATE
 AS
-	INSERT INTO NotificationEmails(Recipient, [Subject], Body)
+	INSERT INTO NotificationEmails([Recipient], [Subject], Body)
 	SELECT i.AccountId
 		, CONCAT('Balance change for account: ', i.AccountId)
 		, CONCAT('On ', FORMAT(GETDATE(), 'MMM dd yyyy hh:mmtt') , ' your balance was changed from ', ROUND(i.OldSum, 2), ' to ', ROUND(i.NewSum, 2))
@@ -49,44 +40,50 @@ GO
 
 
 --- Problem 03: Deposit Money
-CREATE PROC usp_DepositMoney(@AccountId INT, @MoneyAmount DECIMAL (9, 4))
+CREATE OR ALTER PROCEDURE usp_DepositMoney(@AccountId INT, @MoneyAmount DECIMAL(18,4))
 AS
 BEGIN TRANSACTION
-	UPDATE Accounts
-	SET Balance += @MoneyAmount
-	WHERE @AccountId = Id
-	IF(@MoneyAmount <= 0)
-	BEGIN
-		ROLLBACK
-		RETURN
-	END
+UPDATE Accounts
+SET Balance = Balance + @MoneyAmount
+WHERE Id = @AccountId
+IF (@MoneyAmount <= 0)
+BEGIN
+	ROLLBACK
+	RETURN
+END
 COMMIT
-GO
 
+EXEC usp_DepositMoney 1, 10
 
 
 
 --- Problem 04: Withdraw Money Procedure
-CREATE PROC usp_WithdrawMoney(@AccountId INT, @MoneyAmount DECIMAL (9, 4))
+CREATE OR ALTER PROCEDURE usp_WithdrawMoney (@AccountId INT, @MoneyAmount DECIMAL(18,4))
 AS
 BEGIN TRANSACTION
-	UPDATE Accounts
-	SET Balance -= @MoneyAmount
-	WHERE @AccountId = Id
-	IF(@MoneyAmount <= 0)
-	BEGIN
-		ROLLBACK
-		RETURN
-	END
+UPDATE Accounts
+SET Balance = Balance - @MoneyAmount
+WHERE Id = @AccountId
+IF (@MoneyAmount <= 0)
+BEGIN
+	ROLLBACK
+	RETURN
+END
 COMMIT
-GO
+
+EXEC usp_WithdrawMoney 5, 11
 
 
 
 --- Problem 05: Money Transfer
-CREATE PROC usp_TransferMoney(@SenderId INT, @ReceiverId INT, @Amount DECIMAL (9,4)) 
-AS
-BEGIN
-	EXEC usp_WithdrawMoney @SenderId, @Amount
-	EXEC usp_DepositMoney @ReceiverId, @Amount
-END
+CREATE OR ALTER PROCEDURE usp_TransferMoney(@SenderId INT, @ReceiverId INT, @Amount DECIMAL(18,4)) 
+AS 
+BEGIN TRANSACTION
+	EXEC dbo.usp_DepositMoney @ReceiverId, @Amount
+	EXEC dbo.usp_WithdrawMoney @SenderId, @Amount
+	IF (@Amount <= 0)
+	BEGIN
+		ROLLBACK
+		RETURN 
+	END
+COMMIT
